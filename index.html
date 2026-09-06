@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>VETO — Gaming Team</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,266 +15,634 @@
 }
 
 body {
+    min-height: 100vh;
     background:
-        radial-gradient(circle at center, #32104d 0%, #120817 45%, #050507 100%);
+        radial-gradient(circle at top, #32104d 0%, #120817 45%, #050507 100%);
     color: white;
     font-family: Arial, sans-serif;
-    min-height: 100vh;
     overflow-x: hidden;
 }
 
+/* HEADER */
+
 header {
     text-align: center;
-    padding: 45px 20px 10px;
+    padding: 55px 20px 25px;
 }
 
 .logo {
-    font-size: 75px;
+    font-size: 78px;
     font-weight: 900;
     font-style: italic;
-    letter-spacing: 8px;
-    color: #d88aff;
+    letter-spacing: 5px;
+    color: #c56cff;
     text-shadow:
-        0 0 10px #a52cff,
-        0 0 30px #a52cff;
+        0 0 10px #b84cff,
+        0 0 25px #9d3cff,
+        0 0 50px #7b22c9;
 }
 
 .subtitle {
-    color: #f4c95d;
-    letter-spacing: 6px;
-    font-size: 13px;
-    margin-top: 5px;
+    margin-top: 15px;
+    color: #f0c84b;
+    font-size: 15px;
+    letter-spacing: 7px;
 }
 
 .select-title {
     text-align: center;
     margin-top: 35px;
-    font-size: 14px;
-    letter-spacing: 5px;
-    color: #aaa;
+    margin-bottom: 35px;
+    font-size: 16px;
+    letter-spacing: 6px;
+    color: #c9b9d8;
 }
 
+/* CARDS */
+
 .characters {
-    width: 100%;
-    max-width: 1200px;
-    margin: 35px auto 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 10px;
-    padding: 0 25px;
+    width: 92%;
+    max-width: 1250px;
+    margin: 0 auto 70px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
 }
 
 .character {
-    width: 25%;
-    height: 430px;
     position: relative;
+    height: 460px;
+
+    overflow: hidden;
     cursor: pointer;
-    transition: 0.45s ease;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
-.character::before {
-    content: "";
-    position: absolute;
-    inset: 20px;
-    background: linear-gradient(
-        180deg,
-        transparent,
-        rgba(140, 40, 255, 0.18)
-    );
-    border-radius: 20px;
-    transition: 0.4s;
-}
+.character:hover {
+    transform: translateY(-8px);
 
-.character:hover,
-.character.selected {
-    transform: translateY(-30px) scale(1.08);
-    z-index: 5;
-}
+    border-color: #c45cff;
 
-.character:hover::before,
-.character.selected::before {
     box-shadow:
-        0 0 30px #9d35ff,
-        inset 0 0 30px rgba(255, 204, 70, .15);
+        0 0 15px rgba(196,92,255,0.4),
+        0 0 35px rgba(156,48,220,0.25);
 }
+
+/* FOTOĞRAFLAR */
 
 .character img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    position: relative;
-    z-index: 2;
-    filter: grayscale(35%) brightness(.75);
-    transition: .4s;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+
+    transition: transform 0.5s ease;
 }
 
-.character:hover img,
-.character.selected img {
-    filter: grayscale(0%) brightness(1);
+.character:hover img {
+    transform: scale(1.05);
 }
+
+/* FOTOĞRAFIN ALTINDAKİ KARARTI */
+
+.character::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 40%;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,0.9)
+    );
+
+    pointer-events: none;
+}
+
+/* İSİM */
 
 .name {
     position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 4px;
+    z-index: 2;
+
+    left: 0;
+    right: 0;
+    bottom: 18px;
+
+    text-align: center;
+
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 5px;
+
     color: white;
-    opacity: .5;
-    transition: .3s;
+
+    text-shadow:
+        0 2px 8px black,
+        0 0 15px rgba(255,255,255,0.3);
 }
 
-.character:hover .name,
-.character.selected .name {
-    opacity: 1;
-    color: #f4c95d;
-    text-shadow: 0 0 15px #f4c95d;
+/* VETO ALT LOGO */
+
+.bottom-veto {
+    text-align: center;
+    margin-bottom: 40px;
+
+    color: #c65cff;
+    font-size: 35px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: 5px;
+
+    text-shadow: 0 0 20px #9b32d4;
+}
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.82);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 650px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #24102f,
+            #0c0910
+        );
+
+    border: 1px solid #a942d1;
+
+    box-shadow:
+        0 0 30px rgba(177,58,232,0.35),
+        0 0 80px rgba(122,26,167,0.2);
+
+    padding: 35px;
+
+    position: relative;
+
+    animation: popup 0.25s ease;
+}
+
+@keyframes popup {
+
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+.close {
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    font-size: 28px;
+    color: #aaa;
+
+    cursor: pointer;
+}
+
+.close:hover {
+    color: white;
+}
+
+.modal-name {
+    color: #cf68ff;
+
+    font-size: 38px;
+    font-weight: 900;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 8px;
+}
+
+.modal-role {
+    color: #f0c84b;
+
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 28px;
 }
 
 .info {
-    text-align: center;
-    min-height: 130px;
-    margin-top: 15px;
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
 }
 
-.info h2 {
-    font-size: 28px;
-    letter-spacing: 5px;
-    color: #d88aff;
-    text-shadow: 0 0 15px #8c24ff;
+.info-item {
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.07);
+
+    padding: 17px;
 }
 
-.info p {
-    margin-top: 10px;
-    color: #aaa;
-    letter-spacing: 2px;
-}
+.info-label {
+    color: #9f8aa9;
 
-.line {
-    width: 180px;
-    height: 2px;
-    background: #f4c95d;
-    margin: 15px auto;
-    box-shadow: 0 0 10px #f4c95d;
-}
-
-footer {
-    text-align: center;
-    color: #555;
     font-size: 11px;
-    letter-spacing: 4px;
-    padding: 20px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 6px;
 }
 
-@media(max-width: 700px) {
-    .logo {
-        font-size: 48px;
-    }
+.info-value {
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+.bio {
+    margin-top: 20px;
+
+    padding: 18px;
+
+    background: rgba(255,255,255,0.04);
+
+    color: #ddd;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+/* MOBİL */
+
+@media (max-width: 900px) {
 
     .characters {
-        gap: 0;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .character {
-        height: 450px;
+        height: 420px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .logo {
+        font-size: 55px;
+    }
+
+    .subtitle {
+        font-size: 11px;
+        letter-spacing: 4px;
+    }
+
+    .select-title {
+        font-size: 13px;
+        letter-spacing: 4px;
+    }
+
+    .characters {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 94%;
+    }
+
+    .character {
+        height: 330px;
     }
 
     .name {
-        font-size: 12px;
+        font-size: 16px;
+        letter-spacing: 3px;
     }
+
+    .modal-box {
+        padding: 25px;
+    }
+
+    .modal-name {
+        font-size: 28px;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+
 }
+
 </style>
 </head>
+
 
 <body>
 
 <header>
-    <div class="logo">VETO</div>
-    <div class="subtitle">WE DON'T FOLLOW. WE VETO.</div>
+
+    <div class="logo">
+        VETO
+    </div>
+
+    <div class="subtitle">
+        WE DON'T FOLLOW. WE VETO.
+    </div>
+
 </header>
+
 
 <div class="select-title">
     SELECT YOUR PLAYER
 </div>
 
+
 <section class="characters">
 
+    <!-- DEAN -->
+
     <div class="character" onclick="selectPlayer(0)">
-        <img src="leeknow.jpg">
-        <div class="name">DEAN</div>
+
+        <img src="leeknow.jpg" alt="DEAN">
+
+        <div class="name">
+            DEAN
+        </div>
+
     </div>
+
+
+    <!-- THEO -->
 
     <div class="character" onclick="selectPlayer(1)">
-        <img src="hyunjin.jpg">
-        <div class="name">THEO</div>
+
+        <img src="hyunjin.jpg" alt="THEO">
+
+        <div class="name">
+            THEO
+        </div>
+
     </div>
+
+
+    <!-- RIKU -->
 
     <div class="character" onclick="selectPlayer(2)">
-        <img src="felix.jpg">
-        <div class="name">RIKU</div>
+
+        <img src="felix.jpg" alt="RIKU">
+
+        <div class="name">
+            RIKU
+        </div>
+
     </div>
 
+
+    <!-- ASH -->
+
     <div class="character" onclick="selectPlayer(3)">
-        <img src="jungkook.jpg">
-        <div class="name">ASH</div>
+
+        <img src="jungkook.jpg" alt="ASH">
+
+        <div class="name">
+            ASH
+        </div>
+
     </div>
 
 </section>
 
-<div class="info">
-    <div class="line"></div>
-    <h2 id="playerName">VETO</h2>
-    <p id="playerRole">SELECT A PLAYER</p>
+
+<div class="bottom-veto">
+    VETO
 </div>
 
-<footer>
-    VETO GAMING TEAM • EST. 2025
-</footer>
+
+<!-- BİLGİ PENCERESİ -->
+
+<div class="modal" id="playerModal">
+
+    <div class="modal-box">
+
+        <div class="close" onclick="closeModal()">
+            ×
+        </div>
+
+        <div class="modal-name" id="playerName">
+            DEAN
+        </div>
+
+        <div class="modal-role" id="playerRole">
+            VETO GAMING
+        </div>
+
+
+        <div class="info">
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    YAŞ
+                </div>
+
+                <div class="info-value" id="playerAge">
+                    21
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    POZİSYON
+                </div>
+
+                <div class="info-value" id="playerPosition">
+                    IGL
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    ANA OYUN
+                </div>
+
+                <div class="info-value" id="playerGame">
+                    Valorant
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    OYUN TARZI
+                </div>
+
+                <div class="info-value" id="playerStyle">
+                    Aggressive
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="bio" id="playerBio">
+
+            VETO takımının rekabetçi oyuncularından biri.
+            Takım oyununa ve yüksek tempolu mücadeleye odaklanıyor.
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <script>
 
 const players = [
+
     {
         name: "OVERKILL",
-        role: "VETO GAMING"
+        role: "VETO GAMING",
+        age: "21",
+        position: "IGL",
+        game: "Valorant",
+        style: "Aggressive",
+        bio: "Takımın oyun içi liderlerinden biri. Strateji, karar verme ve takım koordinasyonunda öne çıkıyor."
     },
+
     {
         name: "KYRO",
-        role: "VETO GAMING"
+        role: "VETO GAMING",
+        age: "20",
+        position: "Duelist",
+        game: "Valorant",
+        style: "Entry Fragger",
+        bio: "Yüksek tempolu oyun tarzıyla rakip savunmasını zorlayan oyuncu. İlk teması almaktan çekinmiyor."
     },
+
     {
         name: "AXEL",
-        role: "VETO GAMING"
+        role: "VETO GAMING",
+        age: "22",
+        position: "Controller",
+        game: "Valorant",
+        style: "Tactical",
+        bio: "Harita kontrolü ve takım desteğinde uzmanlaşan oyuncu. Soğukkanlı oyun tarzıyla biliniyor."
     },
+
     {
         name: "KAGE",
-        role: "VETO GAMING"
+        role: "VETO GAMING",
+        age: "21",
+        position: "Sentinel",
+        game: "Valorant",
+        style: "Defensive",
+        bio: "Takımın savunma tarafındaki önemli oyuncularından biri. Pozisyon alma ve bilgi toplamada güçlü."
     }
+
 ];
+
 
 function selectPlayer(index) {
 
-    document.querySelectorAll(".character")
-        .forEach(character => {
-            character.classList.remove("selected");
-        });
-
-    document.querySelectorAll(".character")[index]
-        .classList.add("selected");
+    const player = players[index];
 
     document.getElementById("playerName").innerText =
-        players[index].name;
+        player.name;
 
     document.getElementById("playerRole").innerText =
-        players[index].role;
+        player.role;
+
+    document.getElementById("playerAge").innerText =
+        player.age;
+
+    document.getElementById("playerPosition").innerText =
+        player.position;
+
+    document.getElementById("playerGame").innerText =
+        player.game;
+
+    document.getElementById("playerStyle").innerText =
+        player.style;
+
+    document.getElementById("playerBio").innerText =
+        player.bio;
+
+    document.getElementById("playerModal")
+        .classList.add("active");
+
 }
+
+
+function closeModal() {
+
+    document.getElementById("playerModal")
+        .classList.remove("active");
+
+}
+
+
+document.getElementById("playerModal").addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === this) {
+            closeModal();
+        }
+
+    }
+);
+
 
 </script>
 
