@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VETO — Gaming Team</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background:
+        radial-gradient(circle at center, #32104d 0%, #120817 45%, #050507 100%);
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 45px 20px 10px;
+}
+
+.logo {
+    font-size: 75px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: 8px;
+    color: #d88aff;
+    text-shadow:
+        0 0 10px #a52cff,
+        0 0 30px #a52cff;
+}
+
+.subtitle {
+    color: #f4c95d;
+    letter-spacing: 6px;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.select-title {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: #aaa;
+}
+
+.characters {
+    width: 100%;
+    max-width: 1200px;
+    margin: 35px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 0 25px;
+}
+
+.character {
+    width: 25%;
+    height: 430px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.45s ease;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.character::before {
+    content: "";
+    position: absolute;
+    inset: 20px;
+    background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(140, 40, 255, 0.18)
+    );
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
+.character:hover,
+.character.selected {
+    transform: translateY(-30px) scale(1.08);
+    z-index: 5;
+}
+
+.character:hover::before,
+.character.selected::before {
+    box-shadow:
+        0 0 30px #9d35ff,
+        inset 0 0 30px rgba(255, 204, 70, .15);
+}
+
+.character img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter: grayscale(35%) brightness(.75);
+    transition: .4s;
+}
+
+.character:hover img,
+.character.selected img {
+    filter: grayscale(0%) brightness(1);
+}
+
+.name {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: white;
+    opacity: .5;
+    transition: .3s;
+}
+
+.character:hover .name,
+.character.selected .name {
+    opacity: 1;
+    color: #f4c95d;
+    text-shadow: 0 0 15px #f4c95d;
+}
+
+.info {
+    text-align: center;
+    min-height: 130px;
+    margin-top: 15px;
+}
+
+.info h2 {
+    font-size: 28px;
+    letter-spacing: 5px;
+    color: #d88aff;
+    text-shadow: 0 0 15px #8c24ff;
+}
+
+.info p {
+    margin-top: 10px;
+    color: #aaa;
+    letter-spacing: 2px;
+}
+
+.line {
+    width: 180px;
+    height: 2px;
+    background: #f4c95d;
+    margin: 15px auto;
+    box-shadow: 0 0 10px #f4c95d;
+}
+
+footer {
+    text-align: center;
+    color: #555;
+    font-size: 11px;
+    letter-spacing: 4px;
+    padding: 20px;
+}
+
+@media(max-width: 700px) {
+    .logo {
+        font-size: 48px;
+    }
+
+    .characters {
+        gap: 0;
+    }
+
+    .character {
+        height: 300px;
+    }
+
+    .name {
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">VETO</div>
+    <div class="subtitle">WE DON'T FOLLOW. WE VETO.</div>
+</header>
+
+<div class="select-title">
+    SELECT YOUR PLAYER
+</div>
+
+<section class="characters">
+
+    <div class="character" onclick="selectPlayer(0)">
+        <img src="player1.png">
+        <div class="name">PLAYER 01</div>
+    </div>
+
+    <div class="character" onclick="selectPlayer(1)">
+        <img src="player2.png">
+        <div class="name">PLAYER 02</div>
+    </div>
+
+    <div class="character" onclick="selectPlayer(2)">
+        <img src="player3.png">
+        <div class="name">PLAYER 03</div>
+    </div>
+
+    <div class="character" onclick="selectPlayer(3)">
+        <img src="player4.png">
+        <div class="name">PLAYER 04</div>
+    </div>
+
+</section>
+
+<div class="info">
+    <div class="line"></div>
+    <h2 id="playerName">VETO</h2>
+    <p id="playerRole">SELECT A PLAYER</p>
+</div>
+
+<footer>
+    VETO GAMING TEAM • EST. 2025
+</footer>
+
+<script>
+
+const players = [
+    {
+        name: "PLAYER 01",
+        role: "VETO GAMING"
+    },
+    {
+        name: "PLAYER 02",
+        role: "VETO GAMING"
+    },
+    {
+        name: "PLAYER 03",
+        role: "VETO GAMING"
+    },
+    {
+        name: "PLAYER 04",
+        role: "VETO GAMING"
+    }
+];
+
+function selectPlayer(index) {
+
+    document.querySelectorAll(".character")
+        .forEach(character => {
+            character.classList.remove("selected");
+        });
+
+    document.querySelectorAll(".character")[index]
+        .classList.add("selected");
+
+    document.getElementById("playerName").innerText =
+        players[index].name;
+
+    document.getElementById("playerRole").innerText =
+        players[index].role;
+}
+
+</script>
+
+</body>
+</html>
