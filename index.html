@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,6 @@
 <title>VETO — Gaming Team</title>
 
 <style>
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -17,13 +16,11 @@
 body {
     min-height: 100vh;
     background:
-        radial-gradient(circle at top, #32104d 0%, #120817 45%, #050507 100%);
+        radial-gradient(circle at top, #351044 0%, #120817 45%, #050507 100%);
     color: white;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
-
-/* HEADER */
 
 header {
     text-align: center;
@@ -34,8 +31,8 @@ header {
     font-size: 78px;
     font-weight: 900;
     font-style: italic;
-    letter-spacing: 5px;
-    color: #c56cff;
+    letter-spacing: 6px;
+    color: #c86cff;
     text-shadow:
         0 0 10px #b84cff,
         0 0 25px #9d3cff,
@@ -45,76 +42,57 @@ header {
 .subtitle {
     margin-top: 15px;
     color: #f0c84b;
-    font-size: 15px;
-    letter-spacing: 7px;
+    font-size: 14px;
+    letter-spacing: 6px;
 }
 
 .select-title {
     text-align: center;
-    margin-top: 35px;
-    margin-bottom: 35px;
-    font-size: 16px;
-    letter-spacing: 6px;
-    color: #c9b9d8;
+    margin: 35px 0;
+    font-size: 15px;
+    letter-spacing: 5px;
+    color: #d0c2d8;
 }
-
-/* CARDS */
 
 .characters {
     width: 92%;
-    max-width: 1250px;
-    margin: 0 auto 70px;
-
+    max-width: 1200px;
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
 }
 
 .character {
-    position: relative;
     height: 460px;
-
+    position: relative;
     overflow: hidden;
     cursor: pointer;
-
     background: #111;
-    border: 1px solid rgba(255,255,255,0.08);
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease;
+    border: 1px solid rgba(255,255,255,.1);
+    transition: .3s ease;
 }
 
 .character:hover {
     transform: translateY(-8px);
-
     border-color: #c45cff;
-
     box-shadow:
-        0 0 15px rgba(196,92,255,0.4),
-        0 0 35px rgba(156,48,220,0.25);
+        0 0 18px rgba(196,92,255,.45),
+        0 0 40px rgba(156,48,220,.25);
 }
-
-/* FOTOĞRAFLAR */
 
 .character img {
     width: 100%;
     height: 100%;
-
+    display: block;
     object-fit: cover;
     object-position: center;
-
-    display: block;
-
-    transition: transform 0.5s ease;
+    transition: transform .5s ease;
 }
 
 .character:hover img {
     transform: scale(1.05);
 }
-
-/* FOTOĞRAFIN ALTINDAKİ KARARTI */
 
 .character::after {
     content: "";
@@ -122,69 +100,48 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-
-    height: 40%;
-
+    height: 45%;
     background: linear-gradient(
         transparent,
-        rgba(0,0,0,0.9)
+        rgba(0,0,0,.95)
     );
-
     pointer-events: none;
 }
-
-/* İSİM */
 
 .name {
     position: absolute;
     z-index: 2;
-
     left: 0;
     right: 0;
     bottom: 18px;
-
     text-align: center;
-
     font-size: 23px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 5px;
-
-    color: white;
-
-    text-shadow:
-        0 2px 8px black,
-        0 0 15px rgba(255,255,255,0.3);
+    text-shadow: 0 2px 10px #000;
 }
-
-/* VETO ALT LOGO */
 
 .bottom-veto {
     text-align: center;
-    margin-bottom: 40px;
-
+    margin: 55px 0 40px;
     color: #c65cff;
-    font-size: 35px;
+    font-size: 34px;
     font-weight: 900;
     font-style: italic;
-    letter-spacing: 5px;
-
+    letter-spacing: 6px;
     text-shadow: 0 0 20px #9b32d4;
 }
 
-/* MODAL */
+/* PROFİL PENCERESİ */
 
 .modal {
     position: fixed;
     inset: 0;
-
-    background: rgba(0,0,0,0.82);
-
+    background: rgba(0,0,0,.82);
     display: none;
     align-items: center;
     justify-content: center;
-
     padding: 20px;
-
     z-index: 1000;
 }
 
@@ -194,51 +151,34 @@ header {
 
 .modal-box {
     width: 100%;
-    max-width: 650px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #24102f,
-            #0c0910
-        );
-
-    border: 1px solid #a942d1;
-
+    max-width: 620px;
+    background: linear-gradient(145deg,#281233,#0c0910);
+    border: 1px solid #b64ce0;
     box-shadow:
-        0 0 30px rgba(177,58,232,0.35),
-        0 0 80px rgba(122,26,167,0.2);
-
+        0 0 35px rgba(177,58,232,.4),
+        0 0 80px rgba(122,26,167,.2);
     padding: 35px;
-
     position: relative;
-
-    animation: popup 0.25s ease;
+    animation: popup .25s ease;
 }
 
 @keyframes popup {
-
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(.9);
     }
-
     to {
         opacity: 1;
         transform: scale(1);
     }
-
 }
 
 .close {
     position: absolute;
-
-    top: 15px;
+    top: 12px;
     right: 20px;
-
-    font-size: 28px;
+    font-size: 30px;
     color: #aaa;
-
     cursor: pointer;
 }
 
@@ -247,78 +187,57 @@ header {
 }
 
 .modal-name {
-    color: #cf68ff;
-
-    font-size: 38px;
+    color: #d16aff;
+    font-size: 40px;
     font-weight: 900;
-
-    letter-spacing: 5px;
-
-    margin-bottom: 8px;
+    letter-spacing: 6px;
 }
 
 .modal-role {
     color: #f0c84b;
-
-    font-size: 14px;
-
-    letter-spacing: 3px;
-
+    margin-top: 8px;
     margin-bottom: 28px;
+    font-size: 13px;
+    letter-spacing: 3px;
 }
 
 .info {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
-    gap: 15px;
+    gap: 14px;
 }
 
 .info-item {
-    background: rgba(255,255,255,0.05);
-
-    border: 1px solid rgba(255,255,255,0.07);
-
     padding: 17px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
 }
 
 .info-label {
-    color: #9f8aa9;
-
-    font-size: 11px;
-
+    color: #a996b0;
+    font-size: 10px;
     letter-spacing: 2px;
-
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 }
 
 .info-value {
     color: white;
-
-    font-size: 16px;
-
+    font-size: 17px;
     font-weight: bold;
 }
 
 .bio {
-    margin-top: 20px;
-
+    margin-top: 18px;
     padding: 18px;
-
-    background: rgba(255,255,255,0.04);
-
+    background: rgba(255,255,255,.04);
     color: #ddd;
-
     line-height: 1.6;
-
     font-size: 14px;
 }
 
-/* MOBİL */
+/* TELEFON */
 
 @media (max-width: 900px) {
-
     .characters {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -326,29 +245,21 @@ header {
     .character {
         height: 420px;
     }
-
 }
 
 @media (max-width: 600px) {
-
     .logo {
         font-size: 55px;
     }
 
     .subtitle {
-        font-size: 11px;
-        letter-spacing: 4px;
-    }
-
-    .select-title {
-        font-size: 13px;
-        letter-spacing: 4px;
+        font-size: 10px;
+        letter-spacing: 3px;
     }
 
     .characters {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
         width: 94%;
+        gap: 10px;
     }
 
     .character {
@@ -360,191 +271,96 @@ header {
         letter-spacing: 3px;
     }
 
+    .info {
+        grid-template-columns: 1fr;
+    }
+
     .modal-box {
         padding: 25px;
     }
 
     .modal-name {
-        font-size: 28px;
+        font-size: 29px;
     }
-
-    .info {
-        grid-template-columns: 1fr;
-    }
-
 }
-
 </style>
 </head>
-
 
 <body>
 
 <header>
-
-    <div class="logo">
-        VETO
-    </div>
+    <div class="logo">VETO</div>
 
     <div class="subtitle">
         WE DON'T FOLLOW. WE VETO.
     </div>
-
 </header>
-
 
 <div class="select-title">
     SELECT YOUR PLAYER
 </div>
 
-
 <section class="characters">
 
-    <!-- DEAN -->
-
     <div class="character" onclick="selectPlayer(0)">
-
-        <img src="leeknow.jpg" alt="DEAN">
-
-        <div class="name">
-            OVERKILL
-        </div>
-
+        <img src="leeknow.jpg" alt="OVERKILL">
+        <div class="name">OVERKILL</div>
     </div>
-
-
-    <!-- THEO -->
 
     <div class="character" onclick="selectPlayer(1)">
-
-        <img src="hyunjin.jpg" alt="THEO">
-
-        <div class="name">
-            KYRO
-        </div>
-
+        <img src="hyunjin.jpg" alt="KYRO">
+        <div class="name">KYRO</div>
     </div>
-
-
-    <!-- RIKU -->
 
     <div class="character" onclick="selectPlayer(2)">
-
-        <img src="felix.jpg" alt="RIKU">
-
-        <div class="name">
-            AXEL
-        </div>
-
+        <img src="felix.jpg" alt="AXEL">
+        <div class="name">AXEL</div>
     </div>
 
-
-    <!-- ASH -->
-
     <div class="character" onclick="selectPlayer(3)">
-
-        <img src="jungkook.jpg" alt="ASH">
-
-        <div class="name">
-            KAGE
-        </div>
-
+        <img src="jungkook.jpg" alt="KAGE">
+        <div class="name">KAGE</div>
     </div>
 
 </section>
-
 
 <div class="bottom-veto">
     VETO
 </div>
 
-
-<!-- BİLGİ PENCERESİ -->
+<!-- PROFİL -->
 
 <div class="modal" id="playerModal">
 
     <div class="modal-box">
 
-        <div class="close" onclick="closeModal()">
-            ×
-        </div>
+        <div class="close" onclick="closeModal()">×</div>
 
-        <div class="modal-name" id="playerName">
-            DEAN
-        </div>
+        <div class="modal-name" id="playerName"></div>
 
-        <div class="modal-role" id="playerRole">
+        <div class="modal-role">
             VETO GAMING
         </div>
-
 
         <div class="info">
 
             <div class="info-item">
-
-                <div class="info-label">
-                    YAŞ
-                </div>
-
-                <div class="info-value" id="playerAge">
-                    26
-                </div>
-
+                <div class="info-label">AGE</div>
+                <div class="info-value" id="playerAge"></div>
             </div>
 
-
             <div class="info-item">
-
-                <div class="info-label">
-                    RANK
-                </div>
-
-                <div class="info-value" id="playerRank">
-                    IMMORTAL
-                </div>
-
-            </div>
-
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    ANA OYUN
-                </div>
-
-                <div class="info-value" id="playerGame">
-                    Valorant
-                </div>
-
-            </div>
-
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    OYUN TARZI
-                </div>
-
-                <div class="info-value" id="playerStyle">
-                    Aggressive
-                </div>
-
+                <div class="info-label">RANK</div>
+                <div class="info-value" id="playerRank"></div>
             </div>
 
         </div>
 
-
-        <div class="bio" id="playerBio">
-
-            Skill is built in the lobby, proven in the match.
-        
-
-        </div>
+        <div class="bio" id="playerBio"></div>
 
     </div>
 
 </div>
-
 
 <script>
 
@@ -552,46 +368,33 @@ const players = [
 
     {
         name: "OVERKILL",
-        role: "VETO GAMING",
         age: "26",
         rank: "IMMORTAL",
-        game: "Valorant",
-        style: "Aggressive",
         bio: "skill is built in the lobby, proven in the match."
     },
 
     {
         name: "KYRO",
-        role: "VETO GAMING",
         age: "24",
         rank: "DIAMOND",
-        game: "Valorant",
-        style: "Entry Fragger",
-        bio: "respawn stronger, strike harder. "
+        bio: "respawn stronger, strike harder."
     },
 
     {
         name: "AXEL",
-        role: "VETO GAMING",
         age: "22",
         rank: "PLATINUM",
-        game: "Valorant",
-        style: "Tactical",
         bio: "gamer by choice, legend by effort."
     },
 
     {
         name: "KAGE",
-        role: "VETO GAMING",
         age: "29",
         rank: "ASCENDANT",
-        game: "Valorant",
-        style: "Defensive",
         bio: "i don't age, i level up."
     }
 
 ];
-
 
 function selectPlayer(index) {
 
@@ -600,49 +403,33 @@ function selectPlayer(index) {
     document.getElementById("playerName").innerText =
         player.name;
 
-    document.getElementById("playerRole").innerText =
-        player.role;
-
     document.getElementById("playerAge").innerText =
         player.age;
 
     document.getElementById("playerRank").innerText =
-        player.position;
-
-    document.getElementById("playerGame").innerText =
-        player.game;
-
-    document.getElementById("playerStyle").innerText =
-        player.style;
+        player.rank;
 
     document.getElementById("playerBio").innerText =
         player.bio;
 
     document.getElementById("playerModal")
         .classList.add("active");
-
 }
-
 
 function closeModal() {
 
     document.getElementById("playerModal")
         .classList.remove("active");
-
 }
-
 
 document.getElementById("playerModal").addEventListener(
     "click",
     function(event) {
-
         if (event.target === this) {
             closeModal();
         }
-
     }
 );
-
 
 </script>
 
