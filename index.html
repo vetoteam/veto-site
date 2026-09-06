@@ -7,142 +7,421 @@
 <title>VETO — Gaming Team</title>
 
 <style>
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    min-height: 100vh;
-    background:
-        radial-gradient(circle at top, #351044 0%, #120817 45%, #050507 100%);
+    background: #050507;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
 }
 
-header {
-    text-align: center;
-    padding: 55px 20px 25px;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 10%, rgba(177,55,255,.18), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(255,0,170,.12), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(255,190,0,.06), transparent 30%);
+    pointer-events: none;
+    z-index: -2;
 }
 
-.logo {
-    font-size: 78px;
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* NAV */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    background: rgba(5,5,7,.78);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(198,92,255,.15);
+    z-index: 999;
+}
+
+.nav-logo {
+    font-size: 25px;
     font-weight: 900;
     font-style: italic;
-    letter-spacing: 6px;
-    color: #c86cff;
-    text-shadow:
-        0 0 10px #b84cff,
-        0 0 25px #9d3cff,
-        0 0 50px #7b22c9;
+    letter-spacing: 4px;
+    color: #d16aff;
+    text-shadow: 0 0 18px rgba(190,70,255,.7);
 }
 
-.subtitle {
-    margin-top: 15px;
-    color: #f0c84b;
-    font-size: 14px;
-    letter-spacing: 6px;
+.nav-links {
+    display: flex;
+    gap: 32px;
 }
 
-.select-title {
+.nav-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: .25s;
+}
+
+.nav-links a:hover {
+    color: #d16aff;
+    text-shadow: 0 0 12px #b84cff;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin: 35px 0;
-    font-size: 15px;
-    letter-spacing: 5px;
-    color: #d0c2d8;
+    position: relative;
+    padding: 100px 20px 50px;
 }
 
-.characters {
+.hero-content {
+    animation: heroIn 1s ease;
+}
+
+@keyframes heroIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-small {
+    color: #f0c84b;
+    font-size: 12px;
+    letter-spacing: 7px;
+    margin-bottom: 18px;
+}
+
+.hero-logo {
+    font-size: clamp(90px, 17vw, 210px);
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: 12px;
+    color: #d16aff;
+    text-shadow:
+        0 0 10px #d16aff,
+        0 0 35px #9d3cff,
+        0 0 80px rgba(157,60,255,.7);
+}
+
+.hero-subtitle {
+    margin-top: 10px;
+    color: #ddd;
+    letter-spacing: 8px;
+    font-size: 13px;
+}
+
+.hero-line {
+    width: 100px;
+    height: 2px;
+    margin: 35px auto;
+    background: #c65cff;
+    box-shadow: 0 0 20px #c65cff;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 15px 35px;
+    border: 1px solid #c65cff;
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.hero-button:hover {
+    background: #c65cff;
+    color: #08050a;
+    box-shadow: 0 0 35px rgba(198,92,255,.6);
+}
+
+.scroll {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #777;
+    font-size: 9px;
+    letter-spacing: 4px;
+}
+
+/* GENERAL */
+
+section {
     width: 92%;
-    max-width: 1200px;
+    max-width: 1250px;
     margin: auto;
+    padding: 110px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.section-title span {
+    display: block;
+    color: #f0c84b;
+    font-size: 10px;
+    letter-spacing: 5px;
+    margin-bottom: 12px;
+}
+
+.section-title h2 {
+    font-size: 38px;
+    letter-spacing: 6px;
+    font-weight: 900;
+}
+
+/* ROSTER */
+
+.roster-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
 }
 
 .character {
-    height: 460px;
+    height: 470px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
     background: #111;
     border: 1px solid rgba(255,255,255,.1);
-    transition: .3s ease;
+    transition: .35s ease;
 }
 
 .character:hover {
-    transform: translateY(-8px);
-    border-color: #c45cff;
+    transform: translateY(-10px);
+    border-color: #d16aff;
     box-shadow:
-        0 0 18px rgba(196,92,255,.45),
-        0 0 40px rgba(156,48,220,.25);
+        0 0 20px rgba(209,106,255,.45),
+        0 0 60px rgba(150,40,220,.18);
 }
 
 .character img {
     width: 100%;
     height: 100%;
-    display: block;
     object-fit: cover;
     object-position: center;
-    transition: transform .5s ease;
+    display: block;
+    transition: .5s ease;
 }
 
 .character:hover img {
-    transform: scale(1.05);
+    transform: scale(1.07);
 }
 
-.character::after {
+.character::before {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 45%;
+    inset: 0;
     background: linear-gradient(
-        transparent,
-        rgba(0,0,0,.95)
+        transparent 35%,
+        rgba(0,0,0,.15) 50%,
+        rgba(0,0,0,.96) 100%
     );
-    pointer-events: none;
+    z-index: 1;
 }
 
-.name {
+.character-info {
     position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
     z-index: 2;
-    left: 0;
-    right: 0;
-    bottom: 18px;
-    text-align: center;
+}
+
+.character-name {
     font-size: 23px;
     font-weight: 900;
-    letter-spacing: 5px;
-    text-shadow: 0 2px 10px #000;
+    letter-spacing: 4px;
 }
 
-.bottom-veto {
+.character-rank {
+    margin-top: 7px;
+    color: #f0c84b;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.character-hint {
+    margin-top: 12px;
+    color: #999;
+    font-size: 9px;
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: .3s;
+}
+
+.character:hover .character-hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MATCHES */
+
+.matches {
+    max-width: 900px;
+    margin: auto;
+}
+
+.match-card {
+    border: 1px solid rgba(198,92,255,.2);
+    background: linear-gradient(
+        100deg,
+        rgba(40,18,51,.8),
+        rgba(10,8,14,.9)
+    );
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     text-align: center;
-    margin: 55px 0 40px;
-    color: #c65cff;
-    font-size: 34px;
-    font-weight: 900;
-    font-style: italic;
-    letter-spacing: 6px;
-    text-shadow: 0 0 20px #9b32d4;
+    margin-bottom: 15px;
+    transition: .3s;
 }
 
-/* PROFİL PENCERESİ */
+.match-card:hover {
+    border-color: #c65cff;
+    box-shadow: 0 0 30px rgba(198,92,255,.12);
+}
+
+.team {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.vs {
+    padding: 0 30px;
+    color: #f0c84b;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.match-info {
+    grid-column: 1 / 4;
+    margin-top: 15px;
+    color: #777;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+/* ABOUT */
+
+.about-box {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+    padding: 60px 30px;
+    border: 1px solid rgba(198,92,255,.18);
+    background: rgba(255,255,255,.025);
+}
+
+.about-big {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #d16aff;
+    margin-bottom: 25px;
+}
+
+.about-text {
+    color: #aaa;
+    line-height: 1.9;
+    font-size: 14px;
+}
+
+.about-quote {
+    margin-top: 35px;
+    color: #f0c84b;
+    letter-spacing: 4px;
+    font-size: 11px;
+}
+
+/* SOCIALS */
+
+.socials {
+    text-align: center;
+}
+
+.social-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.social {
+    padding: 15px 28px;
+    border: 1px solid rgba(255,255,255,.12);
+    color: #bbb;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 3px;
+    transition: .3s;
+}
+
+.social:hover {
+    color: #d16aff;
+    border-color: #d16aff;
+    box-shadow: 0 0 20px rgba(209,106,255,.2);
+}
+
+/* MODAL */
 
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,.82);
+    background: rgba(0,0,0,.86);
+    backdrop-filter: blur(8px);
     display: none;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    z-index: 1000;
+    z-index: 2000;
 }
 
 .modal.active {
@@ -151,14 +430,14 @@ header {
 
 .modal-box {
     width: 100%;
-    max-width: 620px;
+    max-width: 650px;
     background: linear-gradient(145deg,#281233,#0c0910);
-    border: 1px solid #b64ce0;
-    box-shadow:
-        0 0 35px rgba(177,58,232,.4),
-        0 0 80px rgba(122,26,167,.2);
-    padding: 35px;
+    border: 1px solid #c65cff;
+    padding: 40px;
     position: relative;
+    box-shadow:
+        0 0 40px rgba(177,58,232,.45),
+        0 0 100px rgba(122,26,167,.2);
     animation: popup .25s ease;
 }
 
@@ -175,10 +454,10 @@ header {
 
 .close {
     position: absolute;
-    top: 12px;
+    top: 13px;
     right: 20px;
     font-size: 30px;
-    color: #aaa;
+    color: #888;
     cursor: pointer;
 }
 
@@ -188,7 +467,7 @@ header {
 
 .modal-name {
     color: #d16aff;
-    font-size: 40px;
+    font-size: 42px;
     font-weight: 900;
     letter-spacing: 6px;
 }
@@ -197,8 +476,8 @@ header {
     color: #f0c84b;
     margin-top: 8px;
     margin-bottom: 28px;
-    font-size: 13px;
-    letter-spacing: 3px;
+    font-size: 11px;
+    letter-spacing: 4px;
 }
 
 .info {
@@ -208,133 +487,522 @@ header {
 }
 
 .info-item {
-    padding: 17px;
-    background: rgba(255,255,255,.05);
+    padding: 18px;
+    background: rgba(255,255,255,.045);
     border: 1px solid rgba(255,255,255,.08);
 }
 
 .info-label {
-    color: #a996b0;
-    font-size: 10px;
-    letter-spacing: 2px;
-    margin-bottom: 7px;
+    color: #998b9f;
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
 }
 
 .info-value {
     color: white;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: bold;
+}
+
+.rank-value {
+    color: #f0c84b;
+    text-shadow: 0 0 12px rgba(240,200,75,.4);
 }
 
 .bio {
     margin-top: 18px;
-    padding: 18px;
-    background: rgba(255,255,255,.04);
+    padding: 20px;
+    background: rgba(255,255,255,.035);
     color: #ddd;
-    line-height: 1.6;
+    line-height: 1.7;
     font-size: 14px;
+    border-left: 2px solid #c65cff;
 }
 
-/* TELEFON */
+/* X BUTTON */
+
+.x-button {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 13px 24px;
+    border: 1px solid rgba(255,255,255,.18);
+    color: #ddd;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 2px;
+    transition: .3s;
+}
+
+.x-button:hover {
+    color: white;
+    border-color: #d16aff;
+    background: rgba(209,106,255,.12);
+    box-shadow: 0 0 20px rgba(209,106,255,.2);
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.footer-logo {
+    color: #c65cff;
+    font-size: 35px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: 6px;
+}
+
+footer p {
+    margin-top: 12px;
+    color: #555;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+/* MOBILE */
 
 @media (max-width: 900px) {
-    .characters {
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .roster-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .character {
-        height: 420px;
+        height: 430px;
     }
 }
 
 @media (max-width: 600px) {
-    .logo {
-        font-size: 55px;
+
+    nav {
+        padding: 0 20px;
     }
 
-    .subtitle {
-        font-size: 10px;
-        letter-spacing: 3px;
+    .nav-logo {
+        font-size: 20px;
     }
 
-    .characters {
-        width: 94%;
+    .nav-links {
         gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    section {
+        padding: 80px 0;
+    }
+
+    .hero-logo {
+        font-size: 80px;
+        letter-spacing: 5px;
+    }
+
+    .hero-subtitle {
+        font-size: 9px;
+        letter-spacing: 4px;
+    }
+
+    .roster-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
     }
 
     .character {
         height: 330px;
     }
 
-    .name {
-        font-size: 16px;
-        letter-spacing: 3px;
+    .character-info {
+        left: 12px;
+        right: 12px;
+        bottom: 13px;
+    }
+
+    .character-name {
+        font-size: 15px;
+        letter-spacing: 2px;
+    }
+
+    .character-rank {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .character-hint {
+        display: none;
+    }
+
+    .section-title h2 {
+        font-size: 27px;
+    }
+
+    .match-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .vs {
+        padding: 0;
+    }
+
+    .match-info {
+        grid-column: auto;
+    }
+
+    .modal-box {
+        padding: 28px 20px;
+    }
+
+    .modal-name {
+        font-size: 29px;
     }
 
     .info {
         grid-template-columns: 1fr;
     }
 
-    .modal-box {
-        padding: 25px;
-    }
-
-    .modal-name {
-        font-size: 29px;
-    }
 }
+
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">VETO</div>
+<!-- NAVIGATION -->
 
-    <div class="subtitle">
-        WE DON'T FOLLOW. WE VETO.
-    </div>
-</header>
+<nav>
 
-<div class="select-title">
-    SELECT YOUR PLAYER
-</div>
-
-<section class="characters">
-
-    <div class="character" onclick="selectPlayer(0)">
-        <img src="leeknow.jpg" alt="OVERKILL">
-        <div class="name">OVERKILL</div>
+    <div class="nav-logo">
+        VETO
     </div>
 
-    <div class="character" onclick="selectPlayer(1)">
-        <img src="hyunjin.jpg" alt="KYRO">
-        <div class="name">KYRO</div>
+    <div class="nav-links">
+        <a href="#home">HOME</a>
+        <a href="#roster">ROSTER</a>
+        <a href="#matches">MATCHES</a>
+        <a href="#about">ABOUT</a>
+        <a href="#socials">SOCIALS</a>
     </div>
 
-    <div class="character" onclick="selectPlayer(2)">
-        <img src="felix.jpg" alt="AXEL">
-        <div class="name">AXEL</div>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+            WELCOME TO
+        </div>
+
+        <div class="hero-logo">
+            VETO
+        </div>
+
+        <div class="hero-subtitle">
+            WE DON'T FOLLOW. WE VETO.
+        </div>
+
+        <div class="hero-line"></div>
+
+        <a href="#roster" class="hero-button">
+            MEET THE TEAM
+        </a>
+
     </div>
 
-    <div class="character" onclick="selectPlayer(3)">
-        <img src="jungkook.jpg" alt="KAGE">
-        <div class="name">KAGE</div>
+    <div class="scroll">
+        SCROLL TO EXPLORE
     </div>
 
 </section>
 
-<div class="bottom-veto">
-    VETO
-</div>
 
-<!-- PROFİL -->
+<!-- ROSTER -->
+
+<section id="roster">
+
+    <div class="section-title">
+
+        <span>THE PLAYERS</span>
+
+        <h2>ROSTER</h2>
+
+    </div>
+
+    <div class="roster-grid">
+
+
+        <!-- OVERKILL -->
+
+        <div class="character" onclick="selectPlayer(0)">
+
+            <img src="leeknow.jpg" alt="OVERKILL">
+
+            <div class="character-info">
+
+                <div class="character-name">
+                    OVERKILL
+                </div>
+
+                <div class="character-rank">
+                    IMMORTAL
+                </div>
+
+                <div class="character-hint">
+                    CLICK TO VIEW PROFILE
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- KYRO -->
+
+        <div class="character" onclick="selectPlayer(1)">
+
+            <img src="hyunjin.jpg" alt="KYRO">
+
+            <div class="character-info">
+
+                <div class="character-name">
+                    KYRO
+                </div>
+
+                <div class="character-rank">
+                    DIAMOND
+                </div>
+
+                <div class="character-hint">
+                    CLICK TO VIEW PROFILE
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AXEL -->
+
+        <div class="character" onclick="selectPlayer(2)">
+
+            <img src="felix.jpg" alt="AXEL">
+
+            <div class="character-info">
+
+                <div class="character-name">
+                    AXEL
+                </div>
+
+                <div class="character-rank">
+                    PLATINUM
+                </div>
+
+                <div class="character-hint">
+                    CLICK TO VIEW PROFILE
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- KAGE -->
+
+        <div class="character" onclick="selectPlayer(3)">
+
+            <img src="jungkook.jpg" alt="KAGE">
+
+            <div class="character-info">
+
+                <div class="character-name">
+                    KAGE
+                </div>
+
+                <div class="character-rank">
+                    ASCENDANT
+                </div>
+
+                <div class="character-hint">
+                    CLICK TO VIEW PROFILE
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MATCHES -->
+
+<section id="matches">
+
+    <div class="section-title">
+
+        <span>UPCOMING BATTLES</span>
+
+        <h2>MATCHES</h2>
+
+    </div>
+
+    <div class="matches">
+
+        <div class="match-card">
+
+            <div class="team">
+                VETO
+            </div>
+
+            <div class="vs">
+                VS
+            </div>
+
+            <div class="team">
+                TBA
+            </div>
+
+            <div class="match-info">
+                VALORANT • UPCOMING MATCH • DATE TBA
+            </div>
+
+        </div>
+
+        <div class="match-card">
+
+            <div class="team">
+                VETO
+            </div>
+
+            <div class="vs">
+                VS
+            </div>
+
+            <div class="team">
+                TBA
+            </div>
+
+            <div class="match-info">
+                VALORANT • UPCOMING MATCH • DATE TBA
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-title">
+
+        <span>WHO WE ARE</span>
+
+        <h2>ABOUT VETO</h2>
+
+    </div>
+
+    <div class="about-box">
+
+        <div class="about-big">
+            WE DON'T FOLLOW.
+            <br>
+            WE VETO.
+        </div>
+
+        <div class="about-text">
+
+            VETO is a gaming team built around
+            competition, individuality and the
+            obsession to become better every match.
+
+            <br><br>
+
+            We don't play to fit the meta.
+            We play to break it.
+
+        </div>
+
+        <div class="about-quote">
+            SKILL. ATTITUDE. VETO.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOCIALS -->
+
+<section id="socials" class="socials">
+
+    <div class="section-title">
+
+        <span>FIND US</span>
+
+        <h2>SOCIALS</h2>
+
+    </div>
+
+    <div class="social-grid">
+
+        <a href="https://x.com/knqxz"
+           target="_blank"
+           class="social">
+            OVERKILL / X
+        </a>
+
+        <a href="https://x.com/mdeasc"
+           target="_blank"
+           class="social">
+            KYRO / X
+        </a>
+
+        <a href="https://x.com/4ikuea"
+           target="_blank"
+           class="social">
+            AXEL / X
+        </a>
+
+        <a href="https://x.com/riaxoe"
+           target="_blank"
+           class="social">
+            KAGE / X
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- PLAYER MODAL -->
 
 <div class="modal" id="playerModal">
 
     <div class="modal-box">
 
-        <div class="close" onclick="closeModal()">×</div>
+        <div class="close" onclick="closeModal()">
+            ×
+        </div>
 
         <div class="modal-name" id="playerName"></div>
 
@@ -345,24 +1013,59 @@ header {
         <div class="info">
 
             <div class="info-item">
-                <div class="info-label">AGE</div>
+
+                <div class="info-label">
+                    AGE
+                </div>
+
                 <div class="info-value" id="playerAge"></div>
+
             </div>
 
             <div class="info-item">
-                <div class="info-label">RANK</div>
-                <div class="info-value" id="playerRank"></div>
+
+                <div class="info-label">
+                    RANK
+                </div>
+
+                <div class="info-value rank-value" id="playerRank"></div>
+
             </div>
 
         </div>
 
         <div class="bio" id="playerBio"></div>
 
+        <a
+            id="playerTwitter"
+            class="x-button"
+            target="_blank">
+            𝕏 VIEW X PROFILE
+        </a>
+
     </div>
 
 </div>
 
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-logo">
+        VETO
+    </div>
+
+    <p>
+        WE DON'T FOLLOW. WE VETO.
+    </p>
+
+</footer>
+
+
 <script>
+
+/* PLAYER DATA */
 
 const players = [
 
@@ -370,31 +1073,38 @@ const players = [
         name: "OVERKILL",
         age: "26",
         rank: "IMMORTAL",
-        bio: "skill is built in the lobby, proven in the match."
+        bio: "skill is built in the lobby, proven in the match.",
+        twitter: "https://x.com/knqxz"
     },
 
     {
         name: "KYRO",
         age: "24",
         rank: "DIAMOND",
-        bio: "respawn stronger, strike harder."
+        bio: "respawn stronger, strike harder.",
+        twitter: "https://x.com/mdeasc"
     },
 
     {
         name: "AXEL",
         age: "22",
         rank: "PLATINUM",
-        bio: "gamer by choice, legend by effort."
+        bio: "gamer by choice, legend by effort.",
+        twitter: "https://x.com/4ikuea"
     },
 
     {
         name: "KAGE",
         age: "29",
         rank: "ASCENDANT",
-        bio: "i don't age, i level up."
+        bio: "i don't age, i level up.",
+        twitter: "https://x.com/riaxoe"
     }
 
 ];
+
+
+/* OPEN PLAYER */
 
 function selectPlayer(index) {
 
@@ -412,24 +1122,46 @@ function selectPlayer(index) {
     document.getElementById("playerBio").innerText =
         player.bio;
 
+    document.getElementById("playerTwitter").href =
+        player.twitter;
+
     document.getElementById("playerModal")
         .classList.add("active");
+
 }
+
+
+/* CLOSE PLAYER */
 
 function closeModal() {
 
     document.getElementById("playerModal")
         .classList.remove("active");
+
 }
 
-document.getElementById("playerModal").addEventListener(
-    "click",
-    function(event) {
-        if (event.target === this) {
-            closeModal();
-        }
+
+/* CLICK OUTSIDE */
+
+document.getElementById("playerModal")
+.addEventListener("click", function(event) {
+
+    if (event.target === this) {
+        closeModal();
     }
-);
+
+});
+
+
+/* ESC */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closeModal();
+    }
+
+});
 
 </script>
 
