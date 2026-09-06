@@ -407,7 +407,7 @@ header {
         <img src="leeknow.jpg" alt="DEAN">
 
         <div class="name">
-            DEAN
+            OVERKILL
         </div>
 
     </div>
@@ -420,7 +420,7 @@ header {
         <img src="hyunjin.jpg" alt="THEO">
 
         <div class="name">
-            THEO
+            KYRO
         </div>
 
     </div>
@@ -433,7 +433,7 @@ header {
         <img src="felix.jpg" alt="RIKU">
 
         <div class="name">
-            RIKU
+            AXEL
         </div>
 
     </div>
@@ -446,7 +446,7 @@ header {
         <img src="jungkook.jpg" alt="ASH">
 
         <div class="name">
-            ASH
+            KAGE
         </div>
 
     </div>
@@ -487,7 +487,7 @@ header {
                 </div>
 
                 <div class="info-value" id="playerAge">
-                    21
+                    26
                 </div>
 
             </div>
@@ -496,11 +496,11 @@ header {
             <div class="info-item">
 
                 <div class="info-label">
-                    POZİSYON
+                    RANK
                 </div>
 
-                <div class="info-value" id="playerPosition">
-                    IGL
+                <div class="info-value" id="playerRank">
+                    IMMORTAL
                 </div>
 
             </div>
@@ -536,8 +536,8 @@ header {
 
         <div class="bio" id="playerBio">
 
-            VETO takımının rekabetçi oyuncularından biri.
-            Takım oyununa ve yüksek tempolu mücadeleye odaklanıyor.
+            Skill is built in the lobby, proven in the match.
+        
 
         </div>
 
@@ -553,41 +553,41 @@ const players = [
     {
         name: "OVERKILL",
         role: "VETO GAMING",
-        age: "21",
-        position: "IGL",
+        age: "26",
+        rank: "IMMORTAL",
         game: "Valorant",
         style: "Aggressive",
-        bio: "Takımın oyun içi liderlerinden biri. Strateji, karar verme ve takım koordinasyonunda öne çıkıyor."
+        bio: "skill is built in the lobby, proven in the match."
     },
 
     {
         name: "KYRO",
         role: "VETO GAMING",
-        age: "20",
-        position: "Duelist",
+        age: "24",
+        rank: "DIAMOND",
         game: "Valorant",
         style: "Entry Fragger",
-        bio: "Yüksek tempolu oyun tarzıyla rakip savunmasını zorlayan oyuncu. İlk teması almaktan çekinmiyor."
+        bio: "respawn stronger, strike harder. "
     },
 
     {
         name: "AXEL",
         role: "VETO GAMING",
         age: "22",
-        position: "Controller",
+        rank: "PLATINUM",
         game: "Valorant",
         style: "Tactical",
-        bio: "Harita kontrolü ve takım desteğinde uzmanlaşan oyuncu. Soğukkanlı oyun tarzıyla biliniyor."
+        bio: "gamer by choice, legend by effort."
     },
 
     {
         name: "KAGE",
         role: "VETO GAMING",
-        age: "21",
-        position: "Sentinel",
+        age: "29",
+        rank: "ASCENDANT",
         game: "Valorant",
         style: "Defensive",
-        bio: "Takımın savunma tarafındaki önemli oyuncularından biri. Pozisyon alma ve bilgi toplamada güçlü."
+        bio: "i don't age, i level up."
     }
 
 ];
@@ -606,7 +606,7 @@ function selectPlayer(index) {
     document.getElementById("playerAge").innerText =
         player.age;
 
-    document.getElementById("playerPosition").innerText =
+    document.getElementById("playerRank").innerText =
         player.position;
 
     document.getElementById("playerGame").innerText =
